@@ -20,4 +20,12 @@ public class Patients {
     public Patient get(int i) {
         return records[i];
     }
+
+    public boolean isEmpty() {
+        return (current == 0);
+    }
+
+    public boolean isFull() {
+        return (current == records.length);
+    }
 }

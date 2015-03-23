@@ -6,7 +6,7 @@ import java.util.Scanner;
 public class App {
     public static void main(String[] args) {
         System.out.println("BMI Manager");
-        Patients patients = new Patients(10);
+        Patients patients = new Patients(1);
         running:
         while (true) {
             System.out.println("Please select from the " +
@@ -22,11 +22,19 @@ public class App {
 
             switch (choice) {
                 case 1: {
-                    patients.add(createPatient(scanner));
+                    if (patients.isFull()) {
+                        System.out.println("Database is full");
+                    } else {
+                        patients.add(createPatient(scanner));
+                    }
                     break;
                 }
                 case 2: {
-                    viewPatients(patients);
+                    if (patients.isEmpty()) {
+                        System.out.println("Database is empty");
+                    } else {
+                        viewPatients(patients);
+                    }
                     break;
                 }
                 case 3: {
