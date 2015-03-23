@@ -8,25 +8,19 @@ public class Patient {
     private int age;
     private double height, weight;
 
-    public void setName(String name) {
+    public Patient(String name, int age, double height, double weight) {
         this.name = name;
+        this.age = age;
+        this.height = height;
+        this.weight = weight;
     }
 
     public String getName() {
         return name;
     }
 
-    public void setAge(int age) {
-        this.age = age;
-    }
-
     public int getAge() {
         return age;
-    }
-
-    public void setDetails(double height, double weight) {
-        this.height = height;
-        this.weight = weight;
     }
 
     public double getBMI() {

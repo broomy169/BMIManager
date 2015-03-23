@@ -6,10 +6,10 @@ import java.util.Scanner;
 public class App {
     public static void main(String[] args) {
         System.out.println("BMI Manager");
-        Patient patient = new Patient();
+        Patients patients = new Patients(10);
         running:
         while (true) {
-            System.out.println("PLease select from the " +
+            System.out.println("Please select from the " +
                     "following menu options:\n" +
                     "\t1. Add new patient\n" +
                     "\t2. View Patient\n" +
@@ -22,11 +22,11 @@ public class App {
 
             switch (choice) {
                 case 1: {
-                    viewPatient(patient);
+                    patients.add(createPatient(scanner));
                     break;
                 }
                 case 2: {
-                    addPatient(patient, scanner);
+                    viewPatients(patients);
                     break;
                 }
                 case 3: {
@@ -37,24 +37,28 @@ public class App {
         }
     }
 
-    private static void viewPatient(Patient patient) {
-        System.out.println(String.format("\nName: %s Age: %d BMI: %f\n",
-                patient.getName(),
-                patient.getAge(),
-                patient.getBMI()));
+    private static void viewPatients(Patients patients) {
+        for (int i = 0; i < patients.count(); ++i) {
+            Patient patient = patients.get(i);
+            String message = String.format("Name : %s Age: %d BMI: %.2f",
+                    patient.getName(),patient.getAge(), patient.getBMI());
+            System.out.println(message);
+        }
     }
 
-    private static void addPatient(Patient patient, Scanner scanner) {
-        System.out.print("Enter name:");
+    private static Patient createPatient(Scanner scanner) {
+        System.out.println("Enter name: ");
         String name = scanner.nextLine();
-        patient.setName(name);
-        System.out.print("Enter age:");
+
+        System.out.println("Enter age: ");
         int age = scanner.nextInt();
-        patient.setAge(age);
-        System.out.print("Enter weight:");
-        double weight = scanner.nextDouble();
-        System.out.print("Enter height:");
+
+        System.out.println("Enter height: ");
         double height = scanner.nextDouble();
-        patient.setDetails(weight, height);
+
+        System.out.println("Enter weight: ");
+        double weight = scanner.nextDouble();
+
+        return new Patient(name, age, height,weight);
     }
 }

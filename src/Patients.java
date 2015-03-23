@@ -1,0 +1,23 @@
+/**
+ * Created by jc258876 on 23/03/15.
+ */
+public class Patients {
+    Patient[] records;
+    int current;
+
+    public Patients(int maxSize) {
+        records = new Patient[maxSize];
+    }
+
+    public int count() {
+        return current;
+    }
+
+    public void add(Patient patient) {
+        records[current++] = patient;
+    }
+
+    public Patient get(int i) {
+        return records[i];
+    }
+}
